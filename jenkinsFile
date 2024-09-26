@@ -4,6 +4,7 @@ pipeline {
         maven 'maven'
         jdk 'jdk17'
     }
+
     stages {
         stage('Declarative: Checkout SCM') {
             steps {
