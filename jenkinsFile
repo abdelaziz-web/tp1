@@ -1,25 +1,36 @@
 pipeline {
     agent any
-
     tools {
-        maven 'maven'  // This assumes you have Maven configured in Jenkins
-        jdk 'jdk17'    // This assumes you have Java 17 configured in Jenkins
+        maven 'maven'
+        jdk 'jdk17'
     }
-
     stages {
-        stage('Checkout') {
+        stage('Declarative: Checkout SCM') {
             steps {
                 checkout scm
             }
         }
-
-       stage('Build') {
-          steps {
-             bat 'mvn clean compile'
-           }
+        stage('Checkout') {
+            steps {
+                echo 'Checkout completed'
+            }
+        }
+        stage('Display Message') {
+            steps {
+                echo 'Displaying message'
+            }
+        }
+        stage('Build') {
+            steps {
+                bat 'mvn clean compile'
+            }
+        }
+        stage('mvn clean package successful passed') {
+            steps {
+                bat 'mvn clean package'
+            }
         }
     }
-
     post {
         success {
             echo 'Build successful!'
