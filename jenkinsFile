@@ -1,0 +1,31 @@
+pipeline {
+    agent any
+
+    tools {
+        maven 'Maven'  // This assumes you have Maven configured in Jenkins
+        jdk 'JDK17'    // This assumes you have Java 17 configured in Jenkins
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh 'mvn clean compile'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Build successful!'
+        }
+        failure {
+            echo 'Build failed!'
+        }
+    }
+}
