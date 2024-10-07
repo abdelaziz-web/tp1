@@ -10,7 +10,7 @@ public class HelloSpringBoot
 
     @RequestMapping("/hellospring")
     public String sayHello() {
-        return "Hello Spring Boot";
+        return "Hello me";
 
         // it s new controller
 
